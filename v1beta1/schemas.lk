@@ -38,7 +38,7 @@
         // Cannot be updated
         destination?: string
         // Cannot be updated
-        destinationType?: "exchange" or "queue"
+        destinationType?: "exchange" | "queue"
         // Reference to the RabbitmqCluster that the binding will be created in.
         // Required property.
         rabbitmqClusterReference: {
@@ -52,7 +52,7 @@
                 // almost certainly wrong.
                 // More info:
                 // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                name?: string or ""
+                name?: string = ""
             }
             // The name of the RabbitMQ cluster to reference.
             // Have to set either name or connectionSecret, but not both.
@@ -66,7 +66,7 @@
         // Cannot be updated
         source?: string
         // Default to vhost '/'; cannot be updated
-        vhost?: string or "/"
+        vhost?: string = "/"
     }
     // BindingStatus defines the observed state of Binding
     status?: {
@@ -141,7 +141,7 @@
                 // almost certainly wrong.
                 // More info:
                 // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                name?: string or ""
+                name?: string = ""
             }
             // The name of the RabbitMQ cluster to reference.
             // Have to set either name or connectionSecret, but not both.
@@ -151,9 +151,9 @@
             namespace?: string
         }
         // Cannot be updated
-        type?: string or "direct"
+        type?: string = "direct"
         // Default to vhost '/'; cannot be updated
-        vhost?: string or "/"
+        vhost?: string = "/"
     }
     // ExchangeStatus defines the observed state of Exchange
     status?: {
@@ -210,11 +210,11 @@
     // For how to configure federation upstreams, see:
     // https://www.rabbitmq.com/federation-reference.html.
     spec?: {
-        ackMode?: "on-confirm" or "on-publish" or "no-ack"
+        ackMode?: "on-confirm" | "on-publish" | "no-ack"
         // DeletionPolicy defines the behavior of federation in the RabbitMQ cluster when the
         // corresponding custom resource is deleted.
         // Can be set to 'delete' or 'retain'. Default is 'delete'.
-        deletionPolicy?: "delete" or "retain" or "delete"
+        deletionPolicy?: "delete" | "retain" = "delete"
         exchange?: string
         expires?: int
         maxHops?: int
@@ -231,7 +231,7 @@
         // To avoid that, set resource-cleanup-mode key to never.
         // This requires manually deleting the old upstream queue so that it can be recreated with the
         // new type.
-        queueType?: "classic" or "quorum"
+        queueType?: "classic" | "quorum"
         // Reference to the RabbitmqCluster that this federation upstream will be created in.
         // Required property.
         rabbitmqClusterReference: {
@@ -245,7 +245,7 @@
                 // almost certainly wrong.
                 // More info:
                 // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                name?: string or ""
+                name?: string = ""
             }
             // The name of the RabbitMQ cluster to reference.
             // Have to set either name or connectionSecret, but not both.
@@ -259,7 +259,7 @@
         // By default, the internal upstream queue is deleted immediately when a federation link stops.
         // Set to never to keep the upstream queue around and collect messages even when changing
         // federation configuration.
-        resourceCleanupMode?: "default" or "never"
+        resourceCleanupMode?: "default" | "never"
         trustUserId?: bool
         // Secret contains the AMQP URI(s) for the upstream.
         // The Secret must contain the key `uri` or operator will error.
@@ -272,10 +272,10 @@
             // almost certainly wrong.
             // More info:
             // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-            name?: string or ""
+            name?: string = ""
         }
         // Default to vhost '/'; cannot be updated
-        vhost?: string or "/"
+        vhost?: string = "/"
     }
     // FederationStatus defines the observed state of Federation
     status?: {
@@ -334,7 +334,7 @@
         // What this operator policy applies to: 'queues', 'classic_queues', 'quorum_queues',
         // 'streams'.
         // Default to 'queues'.
-        applyTo?: "queues" or "classic_queues" or "quorum_queues" or "streams" or "queues"
+        applyTo?: "queues" | "classic_queues" | "quorum_queues" | "streams" = "queues"
         // OperatorPolicy definition. Required property.
         definition: any
         // Required property; cannot be updated
@@ -345,7 +345,7 @@
         // Default to '0'.
         // In the event that more than one operator policy can match a given queue, the operator policy
         // with the greatest priority applies.
-        priority?: int or 0
+        priority?: int = 0
         // Reference to the RabbitmqCluster that the operator policy will be created in.
         // Required property.
         rabbitmqClusterReference: {
@@ -359,7 +359,7 @@
                 // almost certainly wrong.
                 // More info:
                 // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                name?: string or ""
+                name?: string = ""
             }
             // The name of the RabbitMQ cluster to reference.
             // Have to set either name or connectionSecret, but not both.
@@ -369,7 +369,7 @@
             namespace?: string
         }
         // Default to vhost '/'; cannot be updated
-        vhost?: string or "/"
+        vhost?: string = "/"
     }
     // OperatorPolicyStatus defines the observed state of OperatorPolicy
     status?: {
@@ -445,7 +445,7 @@
                 // almost certainly wrong.
                 // More info:
                 // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                name?: string or ""
+                name?: string = ""
             }
             // The name of the RabbitMQ cluster to reference.
             // Have to set either name or connectionSecret, but not both.
@@ -466,7 +466,7 @@
             // almost certainly wrong.
             // More info:
             // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-            name?: string or ""
+            name?: string = ""
         }
         // Name of an existing vhost; required property; cannot be updated
         vhost: string
@@ -528,7 +528,7 @@
         // What this policy applies to: 'queues', 'classic_queues', 'quorum_queues', 'streams',
         // 'exchanges', or 'all'.
         // Default to 'all'.
-        applyTo?: "queues" or "classic_queues" or "quorum_queues" or "streams" or "exchanges" or "all" or "all"
+        applyTo?: "queues" | "classic_queues" | "quorum_queues" | "streams" | "exchanges" | "all" = "all"
         // Policy definition. Required property.
         definition: any
         // Required property; cannot be updated
@@ -539,7 +539,7 @@
         // Default to '0'.
         // In the event that more than one policy can match a given exchange or queue, the policy with
         // the greatest priority applies.
-        priority?: int or 0
+        priority?: int = 0
         // Reference to the RabbitmqCluster that the policy will be created in.
         // Required property.
         rabbitmqClusterReference: {
@@ -553,7 +553,7 @@
                 // almost certainly wrong.
                 // More info:
                 // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                name?: string or ""
+                name?: string = ""
             }
             // The name of the RabbitMQ cluster to reference.
             // Have to set either name or connectionSecret, but not both.
@@ -563,7 +563,7 @@
             namespace?: string
         }
         // Default to vhost '/'; cannot be updated
-        vhost?: string or "/"
+        vhost?: string = "/"
     }
     // PolicyStatus defines the observed state of Policy
     status?: {
@@ -632,7 +632,7 @@
         // DeletionPolicy defines the behavior of queue in the RabbitMQ cluster when the corresponding
         // custom resource is deleted.
         // Can be set to 'delete' or 'retain'. Default is 'delete'.
-        deletionPolicy?: "delete" or "retain" or "delete"
+        deletionPolicy?: "delete" | "retain" = "delete"
         // When set to false queues does not survive server restart.
         durable?: bool
         // Name of the queue; required property.
@@ -650,7 +650,7 @@
                 // almost certainly wrong.
                 // More info:
                 // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                name?: string or ""
+                name?: string = ""
             }
             // The name of the RabbitMQ cluster to reference.
             // Have to set either name or connectionSecret, but not both.
@@ -661,7 +661,7 @@
         }
         type?: string
         // Default to vhost '/'
-        vhost?: string or "/"
+        vhost?: string = "/"
     }
     // QueueStatus defines the observed state of Queue
     status?: {
@@ -738,7 +738,7 @@
                 // almost certainly wrong.
                 // More info:
                 // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                name?: string or ""
+                name?: string = ""
             }
             // The name of the RabbitMQ cluster to reference.
             // Have to set either name or connectionSecret, but not both.
@@ -771,7 +771,7 @@
             // almost certainly wrong.
             // More info:
             // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-            name?: string or ""
+            name?: string = ""
         }
     }
     // SchemaReplicationStatus defines the observed state of SchemaReplication
@@ -828,13 +828,13 @@
     // ShovelSpec defines the desired state of Shovel
     // For how to configure Shovel, see: https://www.rabbitmq.com/shovel.html.
     spec?: {
-        ackMode?: "on-confirm" or "on-publish" or "no-ack"
+        ackMode?: "on-confirm" | "on-publish" | "no-ack"
         addForwardHeaders?: bool
         deleteAfter?: string
         // DeletionPolicy defines the behavior of shovel in the RabbitMQ cluster when the corresponding
         // custom resource is deleted.
         // Can be set to 'delete' or 'retain'. Default is 'delete'.
-        deletionPolicy?: "delete" or "retain" or "delete"
+        deletionPolicy?: "delete" | "retain" = "delete"
         destAddForwardHeaders?: bool
         destAddTimestampHeader?: bool
         // amqp10 configuration; required if destProtocol is amqp10
@@ -849,7 +849,7 @@
         destMessageAnnotations?: any
         // amqp10 configuration
         destProperties?: any
-        destProtocol?: "amqp091" or "amqp10"
+        destProtocol?: "amqp091" | "amqp10"
         // amqp091 configuration
         destPublishProperties?: any
         // amqp091 configuration
@@ -871,7 +871,7 @@
                 // almost certainly wrong.
                 // More info:
                 // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                name?: string or ""
+                name?: string = ""
             }
             // The name of the RabbitMQ cluster to reference.
             // Have to set either name or connectionSecret, but not both.
@@ -891,7 +891,7 @@
         // amqp091 configuration
         srcExchangeKey?: string
         srcPrefetchCount?: int
-        srcProtocol?: "amqp091" or "amqp10"
+        srcProtocol?: "amqp091" | "amqp10"
         // amqp091 configuration
         srcQueue?: string
         srcQueueArgs?: any
@@ -906,10 +906,10 @@
             // almost certainly wrong.
             // More info:
             // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-            name?: string or ""
+            name?: string = ""
         }
         // Default to vhost '/'; cannot be updated
-        vhost?: string or "/"
+        vhost?: string = "/"
     }
     // ShovelStatus defines the observed state of Shovel
     status?: {
@@ -984,7 +984,7 @@
                 // almost certainly wrong.
                 // More info:
                 // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                name?: string or ""
+                name?: string = ""
             }
             // The name of the RabbitMQ cluster to reference.
             // Have to set either name or connectionSecret, but not both.
@@ -1005,7 +1005,7 @@
             // almost certainly wrong.
             // More info:
             // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-            name?: string or ""
+            name?: string = ""
         }
         // Name of an existing vhost; required property; cannot be updated.
         vhost: string
@@ -1083,7 +1083,7 @@
             // almost certainly wrong.
             // More info:
             // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-            name?: string or ""
+            name?: string = ""
         }
         // Limits to apply to a user to restrict the number of connections and channels
         // the user can create. These limits can be used as guard rails in environments
@@ -1109,7 +1109,7 @@
                 // almost certainly wrong.
                 // More info:
                 // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                name?: string or ""
+                name?: string = ""
             }
             // The name of the RabbitMQ cluster to reference.
             // Have to set either name or connectionSecret, but not both.
@@ -1123,7 +1123,7 @@
         // lead to a user than can still connect to the cluster through messaging protocols,
         // but cannot perform any management actions.
         // For more information, see https://www.rabbitmq.com/management.html#permissions.
-        tags?: [any]
+        tags?: ["management" | "policymaker" | "monitoring" | "administrator"]
     }
     // Status exposes the observed state of the User object.
     status?: {
@@ -1147,7 +1147,7 @@
             // almost certainly wrong.
             // More info:
             // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-            name?: string or ""
+            name?: string = ""
         }
         // observedGeneration is the most recent successful generation observed for this User. It
         // corresponds to the
@@ -1192,11 +1192,11 @@
     spec?: {
         // Default queue type for this vhost; can be set to quorum, classic or stream.
         // Supported in RabbitMQ 3.11.12 or above.
-        defaultQueueType?: "quorum" or "classic" or "stream"
+        defaultQueueType?: "quorum" | "classic" | "stream"
         // DeletionPolicy defines the behavior of vhost in the RabbitMQ cluster when the corresponding
         // custom resource is deleted.
         // Can be set to 'delete' or 'retain'. Default is 'delete'.
-        deletionPolicy?: "delete" or "retain" or "delete"
+        deletionPolicy?: "delete" | "retain" = "delete"
         // Limits defines limits to be applied to the vhost.
         // Supported limits include max-connections and max-queues.
         // See https://www.rabbitmq.com/docs/vhosts#limits
@@ -1219,7 +1219,7 @@
                 // almost certainly wrong.
                 // More info:
                 // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                name?: string or ""
+                name?: string = ""
             }
             // The name of the RabbitMQ cluster to reference.
             // Have to set either name or connectionSecret, but not both.

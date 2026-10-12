@@ -37,7 +37,7 @@
         name: string
         // Number of partitions to create within this super stream.
         // Defaults to '3'.
-        partitions?: int or 3
+        partitions?: int = 3
         // Reference to the RabbitmqCluster that the SuperStream will be created in.
         // Required property.
         rabbitmqClusterReference: {
@@ -51,7 +51,7 @@
                 // almost certainly wrong.
                 // More info:
                 // https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                name?: string or ""
+                name?: string = ""
             }
             // The name of the RabbitMQ cluster to reference.
             // Have to set either name or connectionSecret, but not both.
@@ -64,7 +64,7 @@
         // If unset, the routing keys for the partitions will be set to the index of the partitions
         routingKeys?: [string]
         // Default to vhost '/'; cannot be updated
-        vhost?: string or "/"
+        vhost?: string = "/"
     }
     // SuperStreamStatus defines the observed state of SuperStream
     status?: {
